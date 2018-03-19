@@ -9,7 +9,7 @@ import { Artist } from '../classes/Artist';
 @Injectable()
 export class ArtistsService {
 
-  private readonly URL = "http://localhost:3000"
+  private readonly URL = "http://localhost:3000/artists"
   
   constructor(private http: Http) { }
   

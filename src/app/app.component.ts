@@ -9,7 +9,6 @@ export class AppComponent implements OnInit{
   title = 'Music Collection';
   
     ngOnInit() {
-    		console.log("artist component init");
 	 }
   
 }

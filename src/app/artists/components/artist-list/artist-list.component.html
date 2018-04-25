@@ -1,7 +1,7 @@
 <div id="artists">
 	<h2>Artists</h2>
 	<ul style="list-style-type: none">
-		<li *ngFor="let artist of artists"><app-artist [artist]="artist"></app-artist>
+		<li *ngFor="let artist of artists"><app-artist [artist]="artist" [emitterId]="currentArtist"></app-artist>
 		</li>
 	</ul>
 </div>

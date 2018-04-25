@@ -18,6 +18,12 @@ export class AlbumsService {
 		.catch(this.handleError);
   }
   
+  getAlbumsByArtist(artist_id: number): Observable<Album[]> {
+	return this.http.get(this.URL + "?artist_id=" + artist_id)
+		.map((response: Response) => {return response.json();})
+		.catch(this.handleError);
+  }
+  
   private handleError(error: Response) {
       return Observable.throw(error.statusText);
    }

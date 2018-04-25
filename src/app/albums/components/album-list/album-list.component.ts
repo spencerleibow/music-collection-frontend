@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { Album } from '../../classes/Album';
-import { AlbumsService } from '../../services/albums.service'; 
+import { AlbumsService } from '../../services/albums.service';
+import {EmitterService} from 'app/common/services/emitter.service';
 
 
 @Component({
@@ -9,7 +10,10 @@ import { AlbumsService } from '../../services/albums.service';
   styleUrls: ['./album-list.component.css'],
   providers: [AlbumsService]
 })
-export class AlbumListComponent implements OnInit {
+export class AlbumListComponent implements OnInit, OnChanges {
+
+  @Input()
+  emitterId: string;
 
   albums: Array<Album>;
 
@@ -21,9 +25,19 @@ export class AlbumListComponent implements OnInit {
       			error => console.log("ERROR: " + error))
   }
 
+  getAlbumsByArtist(artist_id: number): void {
+    this.albumsService.getAlbumsByArtist(artist_id)
+      .subscribe(resultArray => this.albums = resultArray,
+      			error => console.log("ERROR: " + error))
+  }
+
   ngOnInit() {
     console.log("albums component init");
   	this.getAlbums();
+  }
+  
+   ngOnChanges() {
+     EmitterService.get(this.emitterId).subscribe(value => this.getAlbumsByArtist(value));
   }
 
 
